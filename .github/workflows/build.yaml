@@ -44,7 +44,7 @@ jobs:
 
       # Move the JAR file to the specified path
       - name: Move JAR to artifacts directory
-        run: mv target/*.jar artifacts/app.jar
+        run: mv target/prune-daemon*-jar-with-dependencies.jar artifacts/app.jar
 
       - uses: actions/upload-artifact@v4
         id: upload-jar-artifact

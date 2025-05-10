@@ -16,6 +16,7 @@
         <logback.version>1.5.13</logback.version>
         <jedis.version>4.3.1</jedis.version>
         <revision>1.0.0.2</revision>
+        <main.class>org.mjumbe.Main</main.class>
     </properties>
 
     <dependencies>
@@ -58,4 +59,33 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>prune-daemon</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
