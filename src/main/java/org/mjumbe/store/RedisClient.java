@@ -32,11 +32,11 @@ public class RedisClient implements AutoCloseable{
 		logger.info("Retrieving values for Key: {}", key);
 		try (Jedis jedis = jedisPool.getResource()) {
 			String data = jedis.get(key);
-			logger.info("Data saved to RedisClient: {} -> {}", key, data);
+			logger.info("Retrieved data from key: {} -> {}", key, data);
 			return data;
 		} catch (Exception e) {
 			logger.error("Failed to query data from Redis: {}", e.getMessage());
-			throw new RuntimeException("Failed to save data to RedisClient", e);
+			throw new RuntimeException("Failed to query data from Redis", e);
 		}
 	}
 
