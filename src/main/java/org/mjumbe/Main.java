@@ -22,8 +22,9 @@ public class Main {
 
 				String prunedData = transformer.prune(data);
 				logger.info("Data successfully pruned cache");
-
-				dataCache.cacheData(config.redisKey, prunedData);
+				if (prunedData != null || !("[]".equals(prunedData))) {
+					dataCache.cacheData(config.redisKey, prunedData);
+				}
 				logger.info("Data successfully updated in Redis with key: {}", config.redisKey);
 			}
 		} catch (Exception e) {
